@@ -1,0 +1,9 @@
+<div class="tool_info">
+  <p>Tool: <%= @tool.name %></p>
+  <p>Price: <%= @tool.price %></p>
+  <p>Quantity: <%= @tool.quantity %></p>
+
+</div>
+<%= link_to "Edit", edit_tool_path(@tool) %>
+<%= link_to "Delete", tool_path(@tool), method: :delete %>
+<p><%= link_to " << Back to Tool List!", tools_path %></p>

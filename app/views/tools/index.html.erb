@@ -1,0 +1,18 @@
+<h1>All Tools</h1>
+
+
+<table>
+  <tr>
+    <td><strong>Tools</strong></td>
+    <td><strong>Quantity</strong></td>
+  </tr>
+<% @tools.each do |tool| %>
+  <tr>
+    <td><%= link_to "#{tool.name}", tool_path(tool.id), class: "link" %></td>
+    <td><%= tool.quantity %></td>
+  </tr>
+  <% end %>
+</table>
+
+
+<p><%= link_to "Create a New Tool :)", new_tool_path %></p>
