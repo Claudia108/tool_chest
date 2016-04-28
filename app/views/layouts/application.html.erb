@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ToolChest</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<p class="flash"><%= flash[:notice] %></p>
-<p class="flash"><%= flash[:error] %></p>
+  <head>
+    <title>ToolChest</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <p>
+      <strong>Visits:</strong> <%= session[:hit_counter] %>
+    </p>
+    <% if current_user %>
+      Welcome, <%= current_user.user_name %>!
+      <%= link_to "Logout", logout_path, method: :delete %>
+    <% end %>
 
-<p>
-  <strong>Current Session's Tool Summary: </strong><%= current_tool_summary %>
-</p>
+    <% flash.each do |type, message| %>
+        <%= content_tag :div, message, class: "flash_#{type}" %>
+      <% end %>
 
-<p>
-  <strong>Newest Tool:</strong> <%= most_recent_tool.name %>
-</p>
+  <%= yield %>
 
-<%= yield %>
-
-</body>
+  </body>
 </html>

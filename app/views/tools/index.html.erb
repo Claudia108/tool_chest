@@ -8,11 +8,11 @@
   </tr>
 <% @tools.each do |tool| %>
   <tr>
-    <td><%= link_to "#{tool.name}", tool_path(tool.id), class: "link" %></td>
+    <td><%= link_to "#{tool.name}", user_tool_path(current_user, tool.id), class: "link" %></td>
     <td><%= tool.quantity %></td>
   </tr>
   <% end %>
 </table>
 
 
-<p><%= link_to "Create a New Tool :)", new_tool_path %></p>
+<p><%= link_to "Create a New Tool :)", new_user_tool_path(current_user) %></p>

@@ -11,17 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406154321) do
+ActiveRecord::Schema.define(version: 20160414010512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "tools", force: :cascade do |t|
-    t.text     "name"
-    t.decimal  "price",      precision: 20, scale: 2
-    t.integer  "quantity"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
   end
 
+  create_table "tools", force: :cascade do |t|
+    t.text     "name"
+    t.decimal  "price",       precision: 20, scale: 2
+    t.integer  "quantity"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "user_id"
+    t.integer  "category_id"
+  end
+
+  add_index "tools", ["category_id"], name: "index_tools_on_category_id", using: :btree
+  add_index "tools", ["user_id"], name: "index_tools_on_user_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.text     "name"
+    t.text     "email"
+    t.text     "user_name"
+    t.string   "password_digest"
+    t.string   "password_confirmation"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "role"
+  end
+
+  add_foreign_key "tools", "categories"
+  add_foreign_key "tools", "users"
 end

@@ -2,8 +2,9 @@
   <p>Tool: <%= @tool.name %></p>
   <p>Price: <%= @tool.price %></p>
   <p>Quantity: <%= @tool.quantity %></p>
+  <p>Category: <%= @tool.category.name %></p>
 
 </div>
-<%= link_to "Edit", edit_tool_path(@tool) %>
-<%= link_to "Delete", tool_path(@tool), method: :delete %>
-<p><%= link_to " << Back to Tool List!", tools_path %></p>
+<%= link_to "Edit", edit_user_tool_path(current_user, @tool) %>
+<%= link_to "Delete", user_tool_path(current_user, @tool), method: :delete %>
+<p><%= link_to " << Back to Tool List!", user_tools_path(current_user) %></p>
